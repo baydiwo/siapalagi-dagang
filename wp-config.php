@@ -3,9 +3,9 @@
  * The base configurations of the WordPress.
  *
  * This file has the following configurations: MySQL settings, Table Prefix,
- * Secret Keys, and ABSPATH. You can find more information by visiting
- * {@link https://codex.wordpress.org/Editing_wp-config.php Editing wp-config.php}
- * Codex page. You can get the MySQL settings from your web host.
+ * Secret Keys, WordPress Language, and ABSPATH. You can find more information
+ * by visiting {@link http://codex.wordpress.org/Editing_wp-config.php Editing
+ * wp-config.php} Codex page. You can get the MySQL settings from your web host.
  *
  * This file is used by the wp-config.php creation script during the
  * installation. You don't have to use the web site, you can just copy this file
@@ -28,10 +28,15 @@ define('DB_PASSWORD', 'm4t4kuc0kl4t');
 define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+/**
+ * disable auto draft
+ */
+define('WP_POST_REVISIONS', false);
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -42,16 +47,24 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         's/)<tw,!)3u`I>,RN -^t{TTS,;ey@8/.a}JUBT4+Y4At+jX<(%Kf Usu$Yn#X{q');
-define('SECURE_AUTH_KEY',  '+-3zR$SSj&wdrWANZ0uLXT=~;^JaVY_{>lMaUQ|JlS-6*|zCa>f(sE2q/D994P{x');
-define('LOGGED_IN_KEY',    'iS|V1x4n(/(JanH+o89HSys1}.wn8S%DOoeckvnn1][r)XX,lT/TT[VPC/IG))+|');
-define('NONCE_KEY',        '+U(t3|ehpV3|Rm6-~$P,88WAOJJf|4t_lnjs6L&7Ry9RHF8gCSt:g6&vkBCJYh~]');
-define('AUTH_SALT',        '-CrWf97n16^F8+&sj|u}{Z!E9#crd0_.|H!+?=s-^Gw0u6~8zG C-I*=uSvC#aqG');
-define('SECURE_AUTH_SALT', ';7[g3n#.0?A?U/j-,Ww#rhgA}knvVv(([g3)/{Mbm~x3=yJ{4ON.nYU50A#Iry0w');
-define('LOGGED_IN_SALT',   'L/tjcfLulYq&U5W:w`}i--P;_dE<!cF|/UFGxbRe-`>%F}*k24Fk>&GNbexLE7ZS');
-define('NONCE_SALT',       'wwC#mqW6A EJ_SPadOj<}( h+~Jv|!XEHN^3hvgK^sbuFqc4Ld)m;Me~2,Ru_y-_');
+define('AUTH_KEY',         '56,OC=[DRCo=Fw3wsGss]6~llC_Z>n2ggT-k86i+!o1c j+et|:Kq]D^+:gS=-Kw');
+define('SECURE_AUTH_KEY',  'S3J+=63i^zg`h,2snTHE%1zbLSr.f<]P0S.{^mq5-SG`g|B{<?uXELG4}?X|tFu0');
+define('LOGGED_IN_KEY',    'FTz%II`-y/xE7&OE<|O:i7kDyaqfs`b&W E(YD@8Uesi%e+Gpx&3MKhuKAp/}vk!');
+define('NONCE_KEY',        'ef n+lNiN?r5hXa=-.YH1-3 BU96vMIWnXf-<vUb~L:G;`.2;{3c-u(GwS<Py(`F');
+define('AUTH_SALT',        '#6:Mf@T?nnC^&K([edqW/s+D7w0UB!bseJaUG*57 0Ee-M[:&ng+Zd.cI78q</[{');
+define('SECURE_AUTH_SALT', ')U%sdKZdAOkxZnJ0@,M5P(*N*xbezxA;#cSjJb,T}*%rTlodmb.XZ=G3b7r|J,u}');
+define('LOGGED_IN_SALT',   'X#Oj,02v(Q77JPhIh~|!]n%B174bE5p0W0}l/5#`fRoK|~GO9UafwVo(=&YBDJ0)');
+define('NONCE_SALT',       '^D7,2,P>>nJ]5nMd)q$h#TWAEUKaxLED;}0Dh$O8H$N@[-3XnsJ;nis,^/l+1B>;');
 
 /**#@-*/
+
+/**
+ * Disable wp auto draft and auto revision
+ */
+
+define( 'AUTOSAVE_INTERVAL', 60*60*60*24*365 ); // autosave 1x per year
+define( 'EMPTY_TRASH_DAYS',  0 ); // zero days
+define( 'WP_POST_REVISIONS', false ); // no revisions
 
 /**
  * WordPress Database Table prefix.
@@ -59,7 +72,17 @@ define('NONCE_SALT',       'wwC#mqW6A EJ_SPadOj<}( h+~Jv|!XEHN^3hvgK^sbuFqc4Ld)m
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'sddb_';
+$table_prefix  = 'sl_';
+
+/**
+ * WordPress Localized Language, defaults to English.
+ *
+ * Change this to localize WordPress. A corresponding MO file for the chosen
+ * language must be installed to wp-content/languages. For example, install
+ * de_DE.mo to wp-content/languages and set WPLANG to 'de_DE' to enable German
+ * language support.
+ */
+define('WPLANG', '');
 
 /**
  * For developers: WordPress debugging mode.
