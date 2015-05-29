@@ -90,7 +90,7 @@
 						<div class="loc-price">
 							<hr>
 							<h1>Lokasi : <b><?php the_field("provinsi"); ?></b></h1>
-							<h1>Harga : <b>Rp <?php the_field("harga"); ?></b></h1>
+							<h1>Harga : <b>Rp <?php $formatted_harga = number_format_i18n( get_field("harga") ); echo $formatted_harga; ?></b></h1>
 							<hr>
 						</div>
 						<ul class="list-unstyled left">
@@ -128,6 +128,27 @@
 			<?php endwhile; // end of the loop. ?>
 		</div><!-- md 8 -->
 		<div class="col-md-4 blog-sidebar">
+			<div class="row">
+				<div class="col-sm-12">
+					<!-- berniaga search -->
+					<form class="form-product-search" role="form" method="get" id="search_form" action="<?php echo home_url(); ?>" style="margin-bottom: 0;">
+					<span>Cari barang dengan kata kunci</span><br>
+					<div class="row">
+						<div class="col-sm-10">
+							<div class="form-group">
+							    <input type="text" class="form-control" id="productSearch" placeholder="" value="" name="s" id="s">
+								<input type="hidden" value="18" name="cat" />
+								<input type="hidden" value="Berniaga" name="catname" />
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<button id="search_submit" type="submit" class="btn btn-default btn-red"><img src="<?php echo get_template_directory_uri(); ?>/img/magnify-red.jpg" alt=""></button>
+						</div>
+					</div>
+					</form>
+					<!-- end of berniaga search -->
+				</div>
+			</div>
 			<?php include "incl/sidebar.php" ?>
 		</div><!-- sidebar -->
 	</div><!-- row -->

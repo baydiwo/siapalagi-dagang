@@ -1,13 +1,14 @@
 <div class="ticker">
     <strong>Berita Utama :</strong>
     <ul>
-		<?php 
+		<?php
 	// WP_Query arguments
 	$args = array (
-		'post_status'            => 'published',
+		'post_status' 			 => array('publish','future'),
 		'pagination'             => false,
 		'posts_per_page'         => '4',
 		'ignore_sticky_posts'    => true,
+		'category__not_in'		 => 18,
 	);
 
 	// The Query
@@ -29,13 +30,14 @@
     </ul>
 </div>
 <ul id="newsslider">
-	<?php 
+	<?php
 	// WP_Query arguments
 	$args = array (
-		'post_status'            => 'published',
+	    'post_status' 			 => array('publish','future'),
 		'pagination'             => false,
 		'posts_per_page'         => '8',
 		'ignore_sticky_posts'    => true,
+		'category__not_in'		 => 18,
 	);
 
 	// The Query
@@ -47,7 +49,7 @@
 			$headline->the_post(); ?>
 			<li>
 				<a href="<?php the_permalink(); ?>">
-					<?php //the_post_thumbnail(); 
+					<?php //the_post_thumbnail();
 					$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 					$params = array( 'width' => 640 , 'height' => 360 , 'crop' => true );
 					$image = bfi_thumb( "$url", $params );

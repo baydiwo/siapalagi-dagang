@@ -1,13 +1,14 @@
 <div class="ticker">
     <strong>Berita Utama :</strong>
     <ul>
-		<?php 
+		<?php
 	// WP_Query arguments
 	$args = array (
-		'post_status'            => 'published',
+		'post_status' 			 => array('publish','future'),
 		'pagination'             => false,
 		'posts_per_page'         => '4',
 		'ignore_sticky_posts'    => true,
+		'category__not_in'		 => 18,
 	);
 
 	// The Query
@@ -28,21 +29,29 @@
 	 ?>
     </ul>
 </div>
-<?php 
-$cat=1;
+<?php
+// $cat=1;
 $yourcat = get_category($cat);
 if ($yourcat) {
 // echo '<h2>' . $yourcat->name . '</h2>';
 }
- ?>
-<ul id="newsslider">
-	<?php 
+$thisCat = get_category(get_query_var('cat'),false);
+$total_posts = $thisCat->count;
+
+if($total_posts == 0){
+	echo '<ul id="newsslider-none" style="display: none;" >';
+}
+else {
+	echo '<ul id="newsslider" >';
+}
+?>
+<!-- <ul id="newsslider" style="display: none;" > -->
+	<?php
 	// WP_Query arguments
 	$args = array (
-		'post_status'            => 'published',
+		'post_status' 			 => array('publish','future'),
 		'pagination'             => false,
 		'posts_per_page'         => '8',
-		'ignore_sticky_posts'    => true,
 		'category_name'          => $yourcat->name
 		);
 
@@ -55,7 +64,7 @@ if ($yourcat) {
 			$headline->the_post(); ?>
 			<li>
 				<a href="<?php the_permalink(); ?>">
-					<?php //the_post_thumbnail(); 
+					<?php //the_post_thumbnail();
 					$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 					$params = array( 'width' => 640 , 'height' => 360 , 'crop' => true );
 					$image = bfi_thumb( "$url", $params );
@@ -66,7 +75,7 @@ if ($yourcat) {
 			</li>
 		<?php }
 	} else { ?>
-		// no posts found
+
 	<?php }
 
 	// Restore original Post Data

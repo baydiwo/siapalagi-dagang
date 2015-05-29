@@ -4,7 +4,7 @@
  *
  * @package WordPress
  * @subpackage EIGHTED
- * 
+ *
  */
  get_header(); ?>
 </head>
@@ -28,11 +28,11 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="teaser">
-							<?php $sel_cat = get_category_parents( $cat ); 
+							<?php $sel_cat = get_category_parents( $cat );
 								if (is_category()) {
 								    global $wp_query;
-								    $cat_obj = $wp_query->get_queried_object();    
-								    $root_cat = get_root_category($cat_obj)->cat_ID;   
+								    $cat_obj = $wp_query->get_queried_object();
+								    $root_cat = get_root_category($cat_obj)->cat_ID;
 
 								    $current_category = single_cat_title("", false);
 
@@ -51,18 +51,19 @@
 				<div class="row">
 				<div class="col-md-12">
 					<div class="category-page">
-					
+
 					<ul class="list-unstyled">
-						<?php 
-						$current_category = get_cat_name( $root_cat );
+						<?php
+						// $current_category = get_cat_name( $root_cat );
+						// $current_category = get_cat_name($cat_id);
 						// WP_Query arguments
 						$args = array (
-							'post_status'            => 'published',
+							'post_status' 			 => array('publish','future'),
 							'category_name'          => "$current_category",
 							// 'cat'  					 => 7,
 							'pagination'             => true,
 							'posts_per_page'         => '20',
-							'offset'				 => '8',
+							// 'offset'				 => '8',
 							'pagination'			 => true
 							);
 						// The Query
@@ -75,8 +76,8 @@
 							<li>
 								<!-- <div class="row category-first">
 									<div class="col-md-5">
-										
-										<?php //the_post_thumbnail(); 
+
+										<?php //the_post_thumbnail();
 										$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 										$params = array( 'width' => 260 , 'height' => 170 , 'crop' => true );
 										$image = bfi_thumb( "$url", $params );
@@ -92,7 +93,7 @@
 								</div> -->
 								<div class="row category-then">
 									<div class="col-md-3">
-										<?php //the_post_thumbnail(); 
+										<?php //the_post_thumbnail();
 										$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 										$params = array( 'width' => 140 , 'height' => 100 , 'crop' => true );
 										$image = bfi_thumb( "$url", $params );
@@ -104,24 +105,24 @@
 										<p class="the-date"><?php if( the_date() == null ){ echo "Hari ini"; } else { the_date('d F Y');} ?></p>
 										<p><?php $excerpt = get_the_excerpt(); echo string_limit_words($excerpt,35); ?></p>
 									</div>
-								</div>	
+								</div>
 							</li>
 							<?php }
 						} else { ?>
 
-					
+
 						<?php } // Restore original Post Data
 						wp_reset_postdata();
 						?>
 						<div class="clearfix"></div>
-						<?php 
+						<?php
 						// WP_Query arguments
 						$args = array (
-							'post_status'            => 'published',
+							'post_status' 			 => array('publish','future'),
 							'category_name'          => "$current_category",
 							'pagination'             => true,
 							'posts_per_page'         => '4',
-							'offset'                 => '1',
+							// 'offset'                 => '1',
 							);
 						// The Query
 						$ragam = new WP_Query( $args );
@@ -130,10 +131,10 @@
 						if ( $ragam->have_posts() ) {
 						while ( $ragam->have_posts() ) {
 							$ragam->the_post(); ?>
-							
+
 							<div class="row category-then">
 								<div class="col-md-3">
-									<?php //the_post_thumbnail(); 
+									<?php //the_post_thumbnail();
 									$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
 									$params = array( 'width' => 140 , 'height' => 100 , 'crop' => true );
 									$image = bfi_thumb( "$url", $params );
@@ -145,17 +146,17 @@
 									<p class="the-date"><?php if( the_date() == null ){ echo "Hari ini"; } else { the_date('d F Y');} ?></p>
 									<p><?php $excerpt = get_the_excerpt(); echo string_limit_words($excerpt,35); ?></p>
 								</div>
-							</div>	
+							</div>
 							<?php }
 						} else { ?>
 
-					
+					<h1>Tidak ada artikel saat ini.</h1>
 						<?php } // Restore original Post Data
-						wp_reset_postdata(); 
+						wp_reset_postdata();
 						?>
 					</ul>
 					</div><!-- article-content -->
-					
+
 				</div>
 				</div>
 		</div><!-- md 8 -->

@@ -37,6 +37,7 @@
         </li>
         <li><a href="<?php echo site_url(); ?>/category/sosial/">Sosial</a></li>
         <li><a href="<?php echo site_url(); ?>/category/event/">Event</a></li>
+        <li><a href="<?php echo site_url(); ?>/category/berniaga/">Berniaga</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
